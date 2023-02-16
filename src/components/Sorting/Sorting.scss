@@ -1,0 +1,30 @@
+@import '../../assets/scss/vars';
+
+.sorting {
+    display: flex;
+}
+.sorting__btn {
+    padding: 15px;
+    box-sizing: content-box !important;
+    height: 20px;
+    display: inline-flex;
+}
+.sorting__btn--select {
+    background-color: $secondary !important;
+}
+.sorting__btn--select > span:last-child {
+    color: $main;
+}
+.sorting__btn > span {
+    font-family: 'Open Sans', sans-serif;
+    color: $main-font;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 20px;
+    text-transform: uppercase;
+    height: 20px;
+    display: inline-block;
+}
+.sorting__btn:hover:not(.sorting__btn--select) > span {
+    color: $secondary;
+}
