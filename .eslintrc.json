@@ -14,7 +14,8 @@
     ],
     "parserOptions": {
         "ecmaFeatures": {
-            "jsx": true
+            "jsx": true,
+            "tsx": true
         },
         "ecmaVersion": 13,
         "sourceType": "module", //ECMAScript module - code has a module scope and is run in strict mode
@@ -22,11 +23,19 @@
         "babelOptions": {
             "babelrc": false,
             "configFile": false,
-            "presets": ["@babel/preset-react"]
+            "presets": ["@babel/preset-react", "@babel/preset-typescript"]
         }
     },
     "plugins": ["react", "jsx-a11y"],
     "parser": "@babel/eslint-parser",
+    "overrides": [
+        {
+            "files": ["*.{ts,tsx}"],
+            "parser": "@typescript-eslint/parser",
+            "plugins": ["@typescript-eslint"],
+            "extends": ["plugin:@typescript-eslint/recommended"]
+        }
+    ],
     "rules": {
         "linebreak-style": ["off", "unix"],
         "quotes": ["error", "single"], //in .prettierrc singleQuote must be true
@@ -48,8 +57,10 @@
                 //and new lines inside a group will be forbidden
             }
         ],
+        //to omit the file extension within the import source path:
+        "import/extensions": ["error", "always", { "js": "never",  "jsx": "never", "ts": "never", "tsx": "never"}],
         //rules of eslint-plugin-react:
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }], //allow use JSX in set of extensions
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }], //allow use JSX in set of extensions
         "react/prop-types": 0, //disallow missing props validation in a React component definition,
         //because it is enabled in plugin:react/recommended
         "react/static-property-placement": ["error", "static public field"], //declared 'defaultProps' inside the class body
@@ -71,7 +82,10 @@
             "allowNamedExports": false
         }],
         //allow unary operators ++ and -- in the afterthought (final expression) of a for loop
-        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
+        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": "warn",
+        "@typescript-eslint/consistent-type-imports": ["warn", {"prefer": "type-imports"}]
     },
     "settings": {
         "import/resolver": { //settings of eslint-plugin-import

@@ -1,19 +1,18 @@
-// import PropTypes from 'prop-types';
 import { Radio } from 'antd';
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 import { v1 as uuidv1 } from 'uuid';
 
-import classes from './Sorting.scss';
+import './Sorting.scss';
 
-export default function Sorting({ value }) {
+export default function Sorting({ value }: { value: string }) {
     const sorting = [
         { name: 'Самый дешевый', value: 'cheap' },
         { name: 'Самый быстрый', value: 'fast' },
         { name: 'Оптимальный', value: 'optimal' },
     ];
 
-    const [checked, setChecked] = useState(null);
+    const [checked, setChecked] = useState<null | string>(null);
 
     useEffect(() => setChecked(value), [value]);
 
@@ -29,16 +28,8 @@ export default function Sorting({ value }) {
     ));
 
     return (
-        <Radio.Group value={checked} className={classes.sorting}>
+        <Radio.Group value={checked} className='sorting'>
             {btns}
         </Radio.Group>
     );
 }
-
-Sorting.propTypes = {
-    // bla: PropTypes.string,
-};
-
-Sorting.defaultProps = {
-    // bla: 'test',
-};
