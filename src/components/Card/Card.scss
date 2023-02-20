@@ -1,0 +1,44 @@
+@import '../../assets/scss/vars';
+
+.card {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    background-color: $main;
+    padding: 26px 20px 20px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 8px 0px #0000001A;
+}
+.card > div,
+.card > ul {
+    display: flex;
+    justify-content: space-between;
+}
+.card > div:first-child {
+    margin-bottom: 20px;
+}
+.card__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    &:first-child {
+        margin-bottom: 10px;
+    }
+}
+.card__itemTitle {
+    font-size: 12px;
+    line-height: 18px;
+    text-transform: uppercase;
+    color: $secondary-font;
+    margin: 0;
+}
+.card__itemInfo {
+    font-size: 14px;
+    line-height: 21px;
+    color: $main-font;
+}
+.card__price {
+    font-size: 24px;
+    line-height: 24px;
+    color: $secondary;
+}

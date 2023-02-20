@@ -1,0 +1,26 @@
+@import '../../assets/scss/vars';
+
+.button {
+    background-color: $secondary;
+    border-color: $secondary;
+    color: $main;
+    padding: 15px 20px;
+    height: auto;
+}
+.button:not(:disabled) {
+    &:hover, &:active, &:focus-visible {
+        background-color: $secondary-light;
+        color: $main;
+        border-color: $secondary-light;
+    }
+}
+.button > span {
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 20px;
+}
+.button--hiden {
+    display: none;
+}
