@@ -2,7 +2,7 @@
 
 .filter {
     padding: 20px 0 10px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: $mainFontFamily;
     color: $main-font;
     background-color: $main;
     border-radius: 5px;
@@ -11,7 +11,7 @@
 }
 .filter__title {
     font-weight: 600;
-    font-size: 12px;
+    font-size: 1rem;
     line-height: 12px;
     text-transform: uppercase;
     padding: 0 20px;
@@ -69,10 +69,10 @@
         }
 
         & > span:nth-child(2) {
-            font-family: 'Open Sans', sans-serif;
+            font-family: $mainFontFamily;
             color: $main-font;
             font-weight: 400;
-            font-size: 13px;
+            font-size: 1rem;
             text-transform: capitalize;
         }
     }

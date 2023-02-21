@@ -1,7 +1,7 @@
 @import '../../assets/scss/vars';
 
 .card {
-    font-family: 'Open Sans', sans-serif;
+    font-family: $mainFontFamily;
     font-weight: 600;
     background-color: $main;
     padding: 26px 20px 20px;
@@ -26,19 +26,19 @@
     }
 }
 .card__itemTitle {
-    font-size: 12px;
-    line-height: 18px;
+    font-size: 1rem;
+    line-height: 1.5rem;
     text-transform: uppercase;
     color: $secondary-font;
     margin: 0;
 }
 .card__itemInfo {
-    font-size: 14px;
+    font-size: 1.15rem;
     line-height: 21px;
     color: $main-font;
 }
 .card__price {
-    font-size: 24px;
+    font-size: 2rem;
     line-height: 24px;
     color: $secondary;
 }

@@ -1,6 +1,9 @@
 @import './assets/scss/vars';
 @import './assets/scss/fonts';
 
+html {
+    font-size: clamp(12px, 1.55vw, 16px);
+}
 body {
     background-color: $background;
 }
