@@ -4,8 +4,13 @@ import Sorting from '../Sorting';
 import CardsSet from '../CardsSet';
 import Filter from '../Filter';
 import Button from '../Button';
+import Head from '../Head';
+
+import useResize from './useResize';
 
 export default function App() {
+    const width = useResize();
+
     const filterTest = [
         { filterName: 'все', isChecked: true },
         { filterName: 'без пересадок', isChecked: false },
@@ -35,12 +40,15 @@ export default function App() {
     const tickets = [1, 2, 3, 4, 5].map(() => ticket);
 
     return (
-        <div className='app__wrap'>
-            <Filter filter={filterTest} onChange={() => null} />
+        <div className='app'>
+            <Head />
             <div className='app__wrap'>
-                <Sorting value='cheap' />
-                <CardsSet tickets={tickets} />
-                <Button text='Показать еще 5 билетов!' onClick={() => null} isHidden={false} />
+                <Filter filter={filterTest} onChange={() => null} isMobile={width < 768} />
+                <div className='app__wrap'>
+                    <Sorting value='cheap' isMobile={width < 431} />
+                    <CardsSet tickets={tickets} />
+                    <Button text='Показать еще 5 билетов!' onClick={() => null} isHidden={false} />
+                </div>
             </div>
         </div>
     );

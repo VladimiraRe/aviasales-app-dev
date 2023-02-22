@@ -1,6 +1,6 @@
 import { Checkbox } from 'antd';
 
-type IFilterItem = import('./interface').IFilterItem;
+import type { IFilterItem } from './interface';
 
 export default function FilterItem({ filterName, isChecked, onChange }: IFilterItem) {
     return (

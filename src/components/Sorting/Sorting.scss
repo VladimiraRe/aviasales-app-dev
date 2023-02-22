@@ -7,7 +7,9 @@
     padding: 15px;
     box-sizing: content-box !important;
     height: 20px;
+    flex-grow: 1;
     display: inline-flex;
+    justify-content: center;
 }
 .sorting__btn--select {
     background-color: $secondary !important;
