@@ -1,10 +1,11 @@
 import { Button as AntdButton } from 'antd';
 
+import type { onClickType } from '../../type';
 import './Button.scss';
 
 interface IButton {
     text: string;
-    onClick: () => void;
+    onClick: onClickType<unknown>;
     isHidden: boolean;
 }
 
