@@ -1,5 +1,4 @@
 import { Radio } from 'antd';
-import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 import { v1 as uuidv1 } from 'uuid';
 
@@ -30,14 +29,18 @@ function createSorting(isMobile: boolean) {
 }
 
 function createBtnsList(sorting: { name: string; value: string }[], func: (e: string) => void, checked: null | string) {
-    return sorting.map((el) => (
-        <Radio.Button
-            key={uuidv1()}
-            className={classNames('sorting__btn', { 'sorting__btn--select': checked === el.value })}
-            value={el.value}
-            onChange={(e) => func(e.target.value)}
-        >
-            {el.name}
-        </Radio.Button>
-    ));
+    return sorting.map((el) => {
+        const className = ['sorting__btn'];
+        if (checked === el.value) className.push('sorting__btn--select');
+        return (
+            <Radio.Button
+                key={uuidv1()}
+                className={className.join(' ')}
+                value={el.value}
+                onChange={(e) => func(e.target.value)}
+            >
+                {el.name}
+            </Radio.Button>
+        );
+    });
 }
