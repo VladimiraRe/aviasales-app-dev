@@ -1,10 +1,10 @@
 import { v1 as uuidv1 } from 'uuid';
 
-import type { ticketType } from '../../type';
+import type { ticketsType, ticketType } from '../../type';
 import './CardsSet.scss';
 import Card from '../Card';
 
-export default function CardsSet({ tickets }: { tickets: ticketType[] | null }) {
+export default function CardsSet({ tickets }: { tickets: ticketsType }) {
     if (!tickets) return null;
     const items = createList(tickets);
 

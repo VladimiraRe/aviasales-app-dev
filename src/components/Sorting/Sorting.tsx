@@ -1,17 +1,21 @@
 import { Radio } from 'antd';
-import { useEffect, useState } from 'react';
 import { v1 as uuidv1 } from 'uuid';
 
 import './Sorting.scss';
+import type { sortingType, onClickType, sortingActionType } from '../../type';
+import { sorting as sortingNames } from '../../store/sorting/actions';
 
-export default function Sorting({ value, isMobile }: { value: string; isMobile: boolean }) {
-    const [sorting, setSorting] = useState(createSorting(isMobile));
-    const [checked, setChecked] = useState<null | string>(null);
-
-    useEffect(() => setChecked(value), [value]);
-    useEffect(() => setSorting(createSorting(isMobile)), [isMobile]);
-
-    const btns = createBtnsList(sorting, setChecked, checked);
+export default function Sorting({
+    sorting: checked,
+    isMobile,
+    onClick,
+}: {
+    sorting: sortingType;
+    isMobile: boolean;
+    onClick: onClickType<sortingType, sortingActionType>;
+}) {
+    const sortingObj = createSortingObj(isMobile, sortingNames);
+    const btns = createBtnsList(sortingObj, onClick, checked);
 
     return (
         <Radio.Group value={checked} className='sorting'>
@@ -20,15 +24,11 @@ export default function Sorting({ value, isMobile }: { value: string; isMobile: 
     );
 }
 
-function createSorting(isMobile: boolean) {
-    return [
-        { name: `${!isMobile ? 'самый ' : ''}дешевый`, value: 'cheap' },
-        { name: `${!isMobile ? 'самый ' : ''}быстрый`, value: 'fast' },
-        { name: 'оптимальный', value: 'optimal' },
-    ];
-}
-
-function createBtnsList(sorting: { name: string; value: string }[], func: (e: string) => void, checked: null | string) {
+function createBtnsList(
+    sorting: { name: string; value: sortingType }[],
+    onClick: onClickType<sortingType>,
+    checked: sortingType
+) {
     return sorting.map((el) => {
         const className = ['sorting__btn'];
         if (checked === el.value) className.push('sorting__btn--select');
@@ -37,10 +37,18 @@ function createBtnsList(sorting: { name: string; value: string }[], func: (e: st
                 key={uuidv1()}
                 className={className.join(' ')}
                 value={el.value}
-                onChange={(e) => func(e.target.value)}
+                onChange={() => onClick(el.value)}
             >
                 {el.name}
             </Radio.Button>
         );
     });
+}
+
+function createSortingObj(isMobile: boolean, sorting: typeof sortingNames) {
+    return [
+        { name: `${!isMobile ? 'самый ' : ''}дешевый`, value: sorting.CHEAP },
+        { name: `${!isMobile ? 'самый ' : ''}быстрый`, value: sorting.FAST },
+        { name: 'оптимальный', value: sorting.OPTIMAL },
+    ];
 }

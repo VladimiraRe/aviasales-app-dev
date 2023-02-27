@@ -1,18 +1,20 @@
 import { connect } from 'react-redux';
 
-import type { stopsFilterType, storeType, ticketType } from '../type';
+import type { stopsFilterType, storeType, ticketsType } from '../type';
 import { stopsFilter as filterArr } from '../store/stopsFilter/actions';
-import CardsSet from '../components/CardsSet';
+
+import SortedTickets from './SortedTickets';
 
 const mapStateToProps = (state: storeType) => {
     if (!state.tickets) return { tickets: null };
     return { tickets: getVisibleTickets(state.tickets, state.stopsFilter) };
 };
 
-export default connect(mapStateToProps)(CardsSet);
+export default connect(mapStateToProps)(SortedTickets);
 
-function getVisibleTickets(tickets: ticketType[], filter: stopsFilterType[]): ticketType[] {
-    let newTickets: ticketType[] = [];
+function getVisibleTickets(tickets: ticketsType, filter: stopsFilterType[]): ticketsType {
+    if (!tickets) return tickets;
+    let newTickets: ticketsType = [];
     if (filter[0] === filterArr.ALL) return tickets;
     if (filter.find((el) => el === filterArr.NONSTOP))
         newTickets = [

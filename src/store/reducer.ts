@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 import type { ticketType } from '../type';
 
 import stopsFilter from './stopsFilter/reducer';
+import sorting from './sorting/reducer';
 
 const tickets = (state: ticketType[] | null = null, action = { type: 'GETTICKETS' }) => {
     switch (action.type) {
@@ -13,6 +14,6 @@ const tickets = (state: ticketType[] | null = null, action = { type: 'GETTICKETS
     }
 };
 
-const reducers = combineReducers({ tickets, stopsFilter });
+const reducers = combineReducers({ tickets, stopsFilter, sorting });
 
 export default reducers;
