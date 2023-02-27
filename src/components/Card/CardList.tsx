@@ -1,17 +1,17 @@
 import { v1 as uuidv1 } from 'uuid';
 
-import type { ISegment } from '../../ interfaces/app.interfaces';
+import type { ticketsSegmentType } from '../../type';
 
 import './Card.scss';
 import CardItem from './CardItem';
 import { useArrivalTime } from './useCardTime';
 
-export default function CardList({ info }: { info: ISegment }) {
+export default function CardList({ info }: { info: ticketsSegmentType }) {
     const item = useCardInfoList(info);
     return <ul className='card__list card__wrap'>{item}</ul>;
 }
 
-function useCardInfoList({ origin, destination, date, stops, duration }: ISegment): JSX.Element[] {
+function useCardInfoList({ origin, destination, date, stops, duration }: ticketsSegmentType): JSX.Element[] {
     const firstTitle = `${origin} - ${destination}`;
 
     const transfers = stops.length;
