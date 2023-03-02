@@ -14,8 +14,7 @@ export default function Card({ ticket }: { ticket: ticketType }) {
                 <span className='card__price'>{price} Р</span>
                 <img src={imgLink} alt='Airline logo' />
             </div>
-            <CardList info={segments[0]} />
-            <CardList info={segments[1]} />
+            <CardList info={segments} />
         </article>
     );
 }

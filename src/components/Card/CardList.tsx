@@ -6,12 +6,17 @@ import './Card.scss';
 import CardItem from './CardItem';
 import { useArrivalTime, useTravelTime } from './useCardTime';
 
-export default function CardList({ info }: { info: ticketsSegmentType }) {
-    const item = useCardList(info);
+export default function CardList({ info }: { info: ticketsSegmentType[] }) {
+    const item = [...useCardList(info[0]), ...useCardList(info[1])].map((el) => (
+        <li key={uuidv1()}>
+            <CardItem title={el[0]} info={el[1]} />
+        </li>
+    ));
+
     return <ul className='card__list card__wrap'>{item}</ul>;
 }
 
-function useCardList({ origin, destination, date, stops, duration }: ticketsSegmentType): JSX.Element[] {
+function useCardList({ origin, destination, date, stops, duration }: ticketsSegmentType) {
     const firstTitle = `${origin} - ${destination}`;
     const thirdTitle = createStopsTitle(stops.length);
 
@@ -19,11 +24,7 @@ function useCardList({ origin, destination, date, stops, duration }: ticketsSegm
         [firstTitle, useTravelTime(date, duration)],
         ['В пути', useArrivalTime(duration)],
         [thirdTitle, stops.join(', ')],
-    ].map((el) => (
-        <li key={uuidv1()}>
-            <CardItem title={el[0]} info={el[1]} />
-        </li>
-    ));
+    ];
 }
 
 function createStopsTitle(numberOfStops: number) {
