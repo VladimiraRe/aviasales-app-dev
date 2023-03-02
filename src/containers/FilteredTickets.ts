@@ -19,22 +19,22 @@ function getVisibleTickets(tickets: ticketsType, filter: stopsFilterType[]): tic
     if (filter.find((el) => el === filterArr.NONSTOP))
         newTickets = [
             ...newTickets,
-            ...tickets.filter(({ segments: [there, back] }) => there.stops.length + back.stops.length === 0),
+            ...tickets.filter(({ segments }) => segments.some((segment) => segment.stops.length === 0)),
         ];
     if (filter.find((el) => el === filterArr.ONESTOP))
         newTickets = [
             ...newTickets,
-            ...tickets.filter(({ segments: [there, back] }) => there.stops.length + back.stops.length === 1),
+            ...tickets.filter(({ segments }) => segments.some((segment) => segment.stops.length === 1)),
         ];
     if (filter.find((el) => el === filterArr.TWOSTOP))
         newTickets = [
             ...newTickets,
-            ...tickets.filter(({ segments: [there, back] }) => there.stops.length + back.stops.length === 2),
+            ...tickets.filter(({ segments }) => segments.some((segment) => segment.stops.length === 2)),
         ];
     if (filter.find((el) => el === filterArr.THREESTOP))
         newTickets = [
             ...newTickets,
-            ...tickets.filter(({ segments: [there, back] }) => there.stops.length + back.stops.length === 3),
+            ...tickets.filter(({ segments }) => segments.some((segment) => segment.stops.length === 3)),
         ];
     return newTickets;
 }
