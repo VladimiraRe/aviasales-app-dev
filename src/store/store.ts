@@ -9,7 +9,7 @@ const preloadedState = {
     searchId: null,
     tickets: null,
     stopsFilter: Object.values(stopsFilterName),
-    sorting: sortingName.OPTIMAL,
+    sorting: sortingName.CHEAP,
     displayedTickets: 5,
     hasError: {},
 };
