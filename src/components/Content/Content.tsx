@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import type { storeType, errorsType, errorsObjType, ticketType } from '../../type';
 import SortingLink from '../../containers/SortingLink';
@@ -7,16 +7,27 @@ import FilteredTickets from '../../containers/FilteredTickets';
 import Button from '../Button';
 import WarningError from '../Error/WarningError';
 import CriticalError from '../Error/CriticalError';
+import { setDisplayedTickets } from '../../store/ticketVisibility/actions';
 
 export default function Content({ width }: { width: number }) {
+    const dispatch = useDispatch();
     const { fetchError, networkError }: errorsObjType = useSelector((state: storeType) => state.hasError);
-    const tickets = useSelector((state: storeType) => state.tickets);
+    const { tickets, displayedTickets } = useSelector((state: storeType) => ({
+        tickets: state.tickets,
+        displayedTickets: state.displayedTickets,
+    }));
 
     const mainContent = (
         <>
             <Loading />
             <FilteredTickets />
-            {!networkError ? <Button text='Показать еще 5 билетов!' onClick={() => null} isHidden={false} /> : null}
+            {!networkError && tickets && tickets.length !== displayedTickets ? (
+                <Button
+                    text='Показать еще 5 билетов!'
+                    onClick={() => dispatch(setDisplayedTickets(5))}
+                    isHidden={false}
+                />
+            ) : null}
         </>
     );
 
