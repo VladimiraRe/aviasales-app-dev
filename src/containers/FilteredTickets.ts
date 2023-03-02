@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import type { stopsFilterType, storeType, ticketsType } from '../type';
-import { stopsFilter as filterArr } from '../store/stopsFilter/actions';
+import { stopsFilterName as filterArr } from '../store/ticketVisibility/actions';
 
 import SortedTickets from './SortedTickets';
 

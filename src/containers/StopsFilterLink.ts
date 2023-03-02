@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import type { stopsFilterType, storeType, appDispatch } from '../type';
-import { setStopsFilter } from '../store/stopsFilter/actions';
+import { setStopsFilter } from '../store/ticketVisibility/actions';
 import StopsFilterItem from '../components/StopsFilter/StopsFilterItem';
 
 const mapStateToProps = (state: storeType, ownProps: { filter: stopsFilterType }) => ({

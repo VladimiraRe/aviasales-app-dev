@@ -1,22 +1,36 @@
-interface IObjTime<T> {
-    hours?: T;
-    minutes: T;
+import { getHours, getMinutes, add } from 'date-fns';
+
+interface IObjTime {
+    hours: number;
+    minutes: number;
 }
+
+const minInHour = 60;
+const zero = (time: number) => (time < 10 ? '0' : '');
 
 function useArrivalTime(min: number): string {
-    const minInHour = 60;
-
-    if (min < minInHour) return `0ч ${min}м`;
-
-    const arrivalTime: IObjTime<number> = { minutes: min % 60 };
-    arrivalTime.hours = (min - arrivalTime.minutes) / 60;
-
-    return `${arrivalTime.hours}ч ${arrivalTime.minutes}м`;
+    if (min < minInHour) return `00ч ${zero(min)}${min}м`;
+    const { minutes, hours } = countMinHours(min);
+    return `${hours}ч ${zero(minutes)}${minutes}м`;
 }
 
-// function useTravelTime() {
+function useTravelTime(stringDate: string, duration: number) {
+    const formatTime = (date: Date) => {
+        const hours = getHours(date);
+        const minutes = getMinutes(date);
+        return `${zero(hours)}${hours}:${zero(minutes)}${minutes}`;
+    };
 
-// }
+    const startDate = new Date(stringDate);
+    const endDate = add(startDate, { minutes: duration });
 
-// eslint-disable-next-line import/prefer-default-export
-export { useArrivalTime };
+    return `${formatTime(startDate)} - ${formatTime(endDate)}`;
+}
+
+function countMinHours(min: number): IObjTime {
+    const minutes = min % minInHour;
+    const hours = (min - minutes) / minInHour;
+    return { minutes, hours };
+}
+
+export { useArrivalTime, useTravelTime };

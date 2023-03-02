@@ -4,24 +4,19 @@ import type { ticketsSegmentType } from '../../type';
 
 import './Card.scss';
 import CardItem from './CardItem';
-import { useArrivalTime } from './useCardTime';
+import { useArrivalTime, useTravelTime } from './useCardTime';
 
 export default function CardList({ info }: { info: ticketsSegmentType }) {
-    const item = useCardInfoList(info);
+    const item = useCardList(info);
     return <ul className='card__list card__wrap'>{item}</ul>;
 }
 
-function useCardInfoList({ origin, destination, date, stops, duration }: ticketsSegmentType): JSX.Element[] {
+function useCardList({ origin, destination, date, stops, duration }: ticketsSegmentType): JSX.Element[] {
     const firstTitle = `${origin} - ${destination}`;
-
-    const transfers = stops.length;
-    let thirdTitle: string;
-    if (transfers === 1) thirdTitle = '1 пересадка';
-    else if (transfers > 1 && transfers <= 4) thirdTitle = `${transfers} пересадки`;
-    else thirdTitle = `${transfers} пересадок`;
+    const thirdTitle = createStopsTitle(stops.length);
 
     return [
-        [firstTitle, date],
+        [firstTitle, useTravelTime(date, duration)],
         ['В пути', useArrivalTime(duration)],
         [thirdTitle, stops.join(', ')],
     ].map((el) => (
@@ -29,4 +24,10 @@ function useCardInfoList({ origin, destination, date, stops, duration }: tickets
             <CardItem title={el[0]} info={el[1]} />
         </li>
     ));
+}
+
+function createStopsTitle(numberOfStops: number) {
+    if (numberOfStops === 1) return '1 пересадка';
+    if (numberOfStops > 1 && numberOfStops <= 4) return `${numberOfStops} пересадки`;
+    return `${numberOfStops} пересадок`;
 }

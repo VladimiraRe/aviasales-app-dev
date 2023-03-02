@@ -11,10 +11,12 @@
 .card > div,
 .card > ul {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
 }
-.card > div:first-child {
+.card__header {
     margin-bottom: 20px;
+    align-items: center;
 }
 .card__list {
     list-style: none;
@@ -24,6 +26,9 @@
     &:first-child {
         margin-bottom: 10px;
     }
+}
+.card__list > li:nth-child(2) {
+    width: 20%;
 }
 .card__itemTitle {
     font-size: 1rem;

@@ -1,19 +1,17 @@
 import { combineReducers } from 'redux';
 
-import type { ticketType } from '../type';
+import { sorting, stopsFilter, displayedTickets } from './ticketVisibility/reducer';
+import { isLoading, searchId, tickets } from './requests/reducer';
+import hasError from './errors/reducer';
 
-import stopsFilter from './stopsFilter/reducer';
-import sorting from './sorting/reducer';
-
-const tickets = (state: ticketType[] | null = null, action = { type: 'GETTICKETS' }) => {
-    switch (action.type) {
-        case 'GETTICKETS':
-            return state;
-        default:
-            return state;
-    }
-};
-
-const reducers = combineReducers({ tickets, stopsFilter, sorting });
+const reducers = combineReducers({
+    isLoading,
+    searchId,
+    tickets,
+    stopsFilter,
+    sorting,
+    hasError,
+    displayedTickets,
+});
 
 export default reducers;

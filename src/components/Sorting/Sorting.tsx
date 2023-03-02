@@ -2,8 +2,8 @@ import { Radio } from 'antd';
 import { v1 as uuidv1 } from 'uuid';
 
 import './Sorting.scss';
-import type { sortingType, onClickType, sortingActionType } from '../../type';
-import { sorting as sortingNames } from '../../store/sorting/actions';
+import type { sortingType, onClickType, actionsType } from '../../type';
+import { sortingName } from '../../store/ticketVisibility/actions';
 
 export default function Sorting({
     sorting: checked,
@@ -12,9 +12,9 @@ export default function Sorting({
 }: {
     sorting: sortingType;
     isMobile: boolean;
-    onClick: onClickType<sortingType, sortingActionType>;
+    onClick: onClickType<sortingType, actionsType>;
 }) {
-    const sortingObj = createSortingObj(isMobile, sortingNames);
+    const sortingObj = createSortingObj(isMobile, sortingName);
     const btns = createBtnsList(sortingObj, onClick, checked);
 
     return (
@@ -45,7 +45,7 @@ function createBtnsList(
     });
 }
 
-function createSortingObj(isMobile: boolean, sorting: typeof sortingNames) {
+function createSortingObj(isMobile: boolean, sorting: typeof sortingName) {
     return [
         { name: `${!isMobile ? 'самый ' : ''}дешевый`, value: sorting.CHEAP },
         { name: `${!isMobile ? 'самый ' : ''}быстрый`, value: sorting.FAST },

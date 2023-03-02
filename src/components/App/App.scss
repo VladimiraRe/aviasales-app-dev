@@ -10,6 +10,9 @@
         padding-right: 4rem;
     }
 }
+.app > div:nth-child(2):not(.app__wrap) {
+    margin-bottom: 20px;
+}
 .app__wrap {
     display: flex;
     gap: 20px;

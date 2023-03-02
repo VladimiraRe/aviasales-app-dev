@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import type { storeType, appDispatch, sortingType } from '../type';
-import { setSorting } from '../store/sorting/actions';
+import { setSorting } from '../store/ticketVisibility/actions';
 import Sorting from '../components/Sorting';
 
 const mapStateToProps = (state: storeType, { isMobile }: { isMobile: boolean }) => ({

@@ -2,7 +2,7 @@ import { Menu } from 'antd';
 import { v1 as uuidv1 } from 'uuid';
 
 import type { stopsFilterType } from '../../type';
-import { stopsFilter } from '../../store/stopsFilter/actions';
+import { stopsFilterName } from '../../store/ticketVisibility/actions';
 import './StopsFilter.scss';
 import StopsFilterLink from '../../containers/StopsFilterLink';
 
@@ -13,7 +13,7 @@ export default function StopsFilter({ isMobile }: { isMobile: boolean }) {
         {
             key: 'top',
             label: 'Количество пересадок',
-            children: createFilterList(Object.values(stopsFilter), filterNames),
+            children: createFilterList(Object.values(stopsFilterName), filterNames),
         },
     ];
     const defaultOpenKeys = !isMobile ? ['top'] : undefined;
