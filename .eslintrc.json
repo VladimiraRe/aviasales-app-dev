@@ -85,8 +85,15 @@
         "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
         "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars": "warn",
+        //correct: import type { someType } from './type':
         "@typescript-eslint/consistent-type-imports": ["warn", {"prefer": "type-imports"}],
-        "default-param-last": "off"
+        //correct: function f(a = 0, b) {}:
+        "default-param-last": "off",
+        //to use an unnamed function in useSelector:
+        "react-redux/useSelector-prefer-selectors": ["off"],
+        //use TypeScript so so I don't need defaultProps:
+        "react/require-default-props": "off",
+        "react/jsx-no-useless-fragment": ["error", { "allowExpressions": true }]
     },
     "settings": {
         "import/resolver": { //settings of eslint-plugin-import
