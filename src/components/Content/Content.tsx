@@ -12,16 +12,19 @@ import { setDisplayedTickets } from '../../store/ticketVisibility/actions';
 export default function Content({ width }: { width: number }) {
     const dispatch = useDispatch();
     const { fetchError, networkError }: errorsObjType = useSelector((state: storeType) => state.hasError);
-    const { tickets, displayedTickets } = useSelector((state: storeType) => ({
+    const { tickets, displayedTickets, stopsFilter } = useSelector((state: storeType) => ({
         tickets: state.tickets,
         displayedTickets: state.displayedTickets,
+        stopsFilter: state.stopsFilter,
     }));
+
+    const isButtonVisible = !networkError && tickets && tickets.length !== displayedTickets && stopsFilter.length !== 0;
 
     const mainContent = (
         <>
             <Loading />
             <FilteredTickets />
-            {!networkError && tickets && tickets.length !== displayedTickets ? (
+            {isButtonVisible ? (
                 <Button
                     text='Показать еще 5 билетов!'
                     onClick={() => dispatch(setDisplayedTickets(5))}
