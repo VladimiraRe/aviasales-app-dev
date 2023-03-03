@@ -1,6 +1,6 @@
 import type { actionsType, ticketsType } from '../../type';
 
-export { isLoading, searchId, tickets };
+export { isLoading, fetchInfo, tickets };
 
 function isLoading(state = true, action: actionsType) {
     switch (action.type) {
@@ -12,10 +12,11 @@ function isLoading(state = true, action: actionsType) {
     }
 }
 
-function searchId(state: string | null = null, action: actionsType) {
+function fetchInfo(state = { error500: 0, searchId: false, isCompleteData: false }, action: actionsType) {
     switch (action.type) {
-        case 'SET_SEARCH_ID':
-            return !state ? action.searchId : state;
+        case 'SET_FETCH_INFO':
+            if (action.info.error500) return { ...state, error500: state.error500 + 1 };
+            return { ...state, ...action.info };
         default:
             return state;
     }

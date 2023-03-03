@@ -6,7 +6,7 @@ import reducers from './reducer';
 
 const preloadedState = {
     isLoading: false,
-    searchId: null,
+    fetchInfo: undefined,
     tickets: null,
     stopsFilter: Object.values(stopsFilterName),
     sorting: sortingName.CHEAP,
